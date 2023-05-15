@@ -1,0 +1,29 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Wix+Madefor+Display&display=swap');
+
+
+body{
+  background: #EBECF0;
+  /* overflow-x: hidden; */
+}
+
+a{
+  font-family: 'Kanit', sans-serif;
+}
+label,h1{
+  font-family: 'Wix Madefor Display', sans-serif;
+}
+span {
+  font-size: 25px;
+  padding: 10px 0 10px 0;
+}
+
+img {
+  height: 50vh;
+  width: 50vw;
+}
+.total-store{
+
+}
