@@ -64,9 +64,10 @@ const AllStores = () => {
 
   console.log(storeId);
   return (
-
-     <TableContainer>
-     <div className="total-store">{<h1>Total Stored: {stores.length}</h1>}</div>
+    <TableContainer>
+      <div className="total-store">
+        {<h1 style={{paddingLeft:"10px"}}>Total Stored: {stores.length}</h1>}
+      </div>
       <StyledTable>
         <TableHead>
           <THead>
@@ -95,7 +96,11 @@ const AllStores = () => {
                     }
                     <span
                       onClick={() => toggleReadMore(store._id)}
-                      style={{ fontSize: "12px",color:"#1566C1",cursor:"pointer" }}
+                      style={{
+                        fontSize: "12px",
+                        color: "#1566C1",
+                        cursor: "pointer",
+                      }}
                     >
                       see full link
                     </span>
@@ -110,7 +115,11 @@ const AllStores = () => {
                         </p>
                         <span
                           onClick={() => setStoreId("")}
-                          style={{ fontSize: "12px",color:"#1566C1",cursor:"pointer" }}
+                          style={{
+                            fontSize: "12px",
+                            color: "#1566C1",
+                            cursor: "pointer",
+                          }}
                         >
                           Hide link
                         </span>
@@ -145,7 +154,6 @@ const AllStores = () => {
         </TableBody>
       </StyledTable>
     </TableContainer>
-
   );
 };
 
