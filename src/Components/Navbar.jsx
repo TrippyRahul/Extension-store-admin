@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, styled } from "@mui/material";
 import { useCookies } from "react-cookie";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 
 const Header = styled(AppBar)`
   background: #111111;
@@ -18,7 +18,7 @@ const NavBar = () => {
   const logout = () => {
     setCookies("access_token", "");
     window.localStorage.clear();
-    window.location.reload();
+Navigate("/auth")
   };
   return (
     <Header position="static">
