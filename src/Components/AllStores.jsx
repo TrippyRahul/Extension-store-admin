@@ -71,7 +71,7 @@ const AllStores = () => {
   return (
     <TableContainer>
       <div className="total-store">
-        {<h1 style={{ paddingLeft: "10px" }}>Total Stored: {stores.length}</h1>}
+        {<h1 style={{ paddingLeft: "10px" }}>Total Stores: {stores.length}</h1>}
       </div>
       <StyledTable>
         <TableHead>
