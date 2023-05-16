@@ -78,7 +78,7 @@ const AllStores = () => {
           <THead>
             <TableCell>Id</TableCell>
             <TableCell>StoreName</TableCell>
-            <TableCell>storeUrl</TableCell>
+            <TableCell>storeUr</TableCell>
             <TableCell>affilatedstore</TableCell>
             <TableCell>affilatedLink</TableCell>
             <TableCell>Time</TableCell>
