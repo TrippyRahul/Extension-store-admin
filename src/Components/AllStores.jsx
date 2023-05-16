@@ -42,10 +42,15 @@ const AllStores = () => {
   const [stores, setStores] = useState([]);
   const [isReadMore, setIsReadMore] = useState(false);
   const [storeId, setStoreId] = useState();
-
+  const [storeIdUrl, setStoreIdUrl] = useState();
+  const [isReadmoreUrl, setIsReadmoreUrl] = useState(false);
   const toggleReadMore = (id) => {
     setIsReadMore(true);
     setStoreId(id);
+  };
+  const toggleReadMoreUrl = (id) => {
+    setIsReadmoreUrl(true);
+    setStoreIdUrl(id);
   };
 
   useEffect(() => {
@@ -66,7 +71,7 @@ const AllStores = () => {
   return (
     <TableContainer>
       <div className="total-store">
-        {<h1 style={{paddingLeft:"10px"}}>Total Stored: {stores.length}</h1>}
+        {<h1 style={{ paddingLeft: "10px" }}>Total Stored: {stores.length}</h1>}
       </div>
       <StyledTable>
         <TableHead>
@@ -85,7 +90,46 @@ const AllStores = () => {
             <TRow key={store._id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{store.storeName}</TableCell>
-              <TableCell>{store.storeUrl}</TableCell>
+              <TableCell>
+                {storeIdUrl !== store._id && (
+                  <div>
+                    {
+                      <p style={{ paddingTop: "25px" }}>
+                        {store?.storeUrl.substring(0, 25)}
+                      </p>
+                    }
+                    <span
+                      onClick={() => toggleReadMoreUrl(store._id)}
+                      style={{
+                        fontSize: "12px",
+                        color: "#1566C1",
+                        cursor: "pointer",
+                      }}
+                    >
+                      see full link
+                    </span>
+                  </div>
+                )}
+                {isReadmoreUrl && (
+                  <div>
+                    {store._id === storeIdUrl && (
+                      <div>
+                        <p style={{ paddingTop: "25px" }}>{store.storeUrl}</p>
+                        <span
+                          onClick={() => setStoreIdUrl("")}
+                          style={{
+                            fontSize: "12px",
+                            color: "#1566C1",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Hide link
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </TableCell>
               <TableCell>
                 {storeId !== store._id && (
                   <div>
