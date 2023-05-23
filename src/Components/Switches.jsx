@@ -1,45 +1,58 @@
 import React, { useState, useEffect } from "react";
 import {
   getAddSwitches,
+  turnOffAllSwicthes,
   TgswitchOne,
   TgswitchTwo,
   TgswitchThree,
   TgswitchFour,
 } from "../Service/api";
 const Switches = () => {
-  const [allSwitches, setAllSwitches] = useState({});
+  const [allSwitches, setAllSwitches] = useState([]);
   const [switchOne, setSwitchOne] = useState("");
   const [switchTwo, setSwitchTwo] = useState("");
   const [switchThree, setSwitchThree] = useState("");
   const [switchFour, setSwitchFour] = useState("");
-
+  const [switchChanged, setSwitchChanged] = useState(false);
   useEffect(() => {
     const getSwitches = async () => {
       const response = await getAddSwitches();
-      setAllSwitches(response.data[0]);
+      setAllSwitches(response.data);
       setSwitchOne(response.data[0].switchOne);
       setSwitchTwo(response.data[0].switchTwo);
       setSwitchThree(response.data[0].switchThree);
       setSwitchFour(response.data[0].switchFour);
     };
     getSwitches();
-  });
+    console.log("jello");
+  }, [switchChanged]);
+
+  const allSWTurnOff = async () => {
+    await turnOffAllSwicthes();
+    setSwitchChanged((prevState) => !prevState);
+  };
 
   const toggleSwitchOne = async () => {
     await TgswitchOne();
+    setSwitchChanged((prevState) => !prevState);
   };
   const toggleSwitchTwo = async () => {
     await TgswitchTwo();
+    setSwitchChanged((prevState) => !prevState);
   };
   const toggleSwitchThree = async () => {
     await TgswitchThree();
+    setSwitchChanged((prevState) => !prevState);
   };
   const toggleSwitchFour = async () => {
     await TgswitchFour();
+    setSwitchChanged((prevState) => !prevState);
   };
 
   return (
     <div>
+      <button onClick={allSWTurnOff}>Turn Off All Switches</button>
+
       <div>
         <div className="switchesButton">
           <div>

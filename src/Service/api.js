@@ -79,6 +79,15 @@ export const getAddSwitches = async () => {
   }
 };
 
+//turn of all switches
+export const turnOffAllSwicthes = async () => {
+  try {
+    return await axios.put(`${URL}/turnOfAllSwitches`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 // Toggle switchOne
 export const TgswitchOne = async () => {
   try {
