@@ -37,8 +37,14 @@ const AddStore = () => {
   };
 
   const addStoreDetails = async () => {
-    await addStore(store);
-    navigate("/all");
+    try {
+      const response = await addStore(store);
+      if (response.status === 201) {
+        alert("store added successfully");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -81,7 +87,9 @@ const AddStore = () => {
         />
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor="my-input">Note:24 hours is 1Day and 0 is not allowed</InputLabel>
+        <InputLabel htmlFor="my-input">
+          Note:24 hours is 1Day and 0 is not allowed
+        </InputLabel>
         <Input
           onChange={(e) => onValueChange(e)}
           name="time"

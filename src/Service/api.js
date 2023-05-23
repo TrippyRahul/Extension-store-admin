@@ -67,3 +67,47 @@ export const deleteStore = async (id) => {
     console.log(`Error while calling Delete store`, error);
   }
 };
+
+///////////////////////Switches////////////////////
+
+// get all switches
+export const getAddSwitches = async () => {
+  try {
+    return await axios.get(`${URL}/allSwitches`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+// Toggle switchOne
+export const TgswitchOne = async () => {
+  try {
+    return await axios.put(`${URL}/switchOne`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+// toggle switch two
+export const TgswitchTwo = async () => {
+  try {
+    return await axios.put(`${URL}/switchTwo`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+//Toggle switch three
+export const TgswitchThree = async () => {
+  try {
+    return await axios.put(`${URL}/switchThree`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+//Toggle switch four
+export const TgswitchFour = async () => {
+  try {
+    return await axios.put(`${URL}/switchFour`);
+  } catch (error) {
+    console.log(error);
+  }
+};

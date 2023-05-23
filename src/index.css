@@ -1,19 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
-  @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit&family=Wix+Madefor+Display&display=swap");
 
-  @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Wix+Madefor+Display&display=swap');
-
-
-body{
-  background: #EBECF0;
+body {
+  background: #ebecf0;
   /* overflow-x: hidden; */
 }
 
-a{
-  font-family: 'Kanit', sans-serif;
+a {
+  font-family: "Kanit", sans-serif;
 }
-label,h1{
-  font-family: 'Wix Madefor Display', sans-serif;
+label,
+h1 {
+  font-family: "Wix Madefor Display", sans-serif;
 }
 span {
   font-size: 25px;
@@ -24,6 +23,8 @@ img {
   height: 50vh;
   width: 50vw;
 }
-.total-store{
 
+.switchesButton {
+  display: flex;
+  flex-direction: column;
 }
