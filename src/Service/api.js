@@ -28,6 +28,7 @@ export const addStore = async (data) => {
     return await axios.post(`${URL}/add`, data);
   } catch (error) {
     console.log("Error while call add sotre api", error);
+    alert(error.response.data.message);
   }
 };
 
