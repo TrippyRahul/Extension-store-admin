@@ -98,6 +98,7 @@ const EditStore = () => {
           name="time"
           value={time}
           id="my-input"
+          
         />
       </FormControl>
       <FormControl>
