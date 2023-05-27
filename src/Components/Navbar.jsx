@@ -35,7 +35,7 @@ const NavBar = () => {
         </Tabs>
         <Tabs to="/switches" exact>
           Switches
-        </Tabs>{" "}
+        </Tabs>
         <Tabs onClick={logout}>Logout</Tabs>
       </Toolbar>
     </Header>
