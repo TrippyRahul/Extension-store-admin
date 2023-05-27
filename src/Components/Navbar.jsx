@@ -14,12 +14,12 @@ const Tabs = styled(NavLink)`
 `;
 
 const NavBar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [cookies, setCookies] = useCookies(["access_token"]);
   const logout = () => {
     setCookies("access_token", "");
     window.localStorage.clear();
-    navigate("/auth")
+    navigate("/auth");
   };
   return (
     <Header position="static">
@@ -32,6 +32,9 @@ const NavBar = () => {
         </Tabs>
         <Tabs to="/registerAdmin" exact>
           Add a new admin
+        </Tabs>
+        <Tabs to="/switches" exact>
+          Switches
         </Tabs>
         <Tabs onClick={logout}>Logout</Tabs>
       </Toolbar>

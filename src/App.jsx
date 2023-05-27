@@ -5,6 +5,7 @@ import EditStore from "./Components/EditStore";
 import NavBar from "./Components/Navbar";
 import RegisterAdmin from "./Components/RegisterAdmin";
 import NotFound from "./Components/NotFound";
+import Switches from "./Components/Switches";
 import {
   BrowserRouter,
   Routes,
@@ -39,14 +40,12 @@ function App() {
             path="/auth"
             element={<Auth isUserAuthenticated={isUserAuthenticated} />}
           />
-
           <Route
             path="/"
             element={<PrivateRoute isAuthenticated={isAuthenticated} />}
           >
             <Route path="/" element={<Auth />} />
           </Route>
-
           <Route
             path="/all"
             element={<PrivateRoute isAuthenticated={isAuthenticated} />}
@@ -64,6 +63,12 @@ function App() {
             element={<PrivateRoute isAuthenticated={isAuthenticated} />}
           >
             <Route path="/edit/:id" element={<EditStore />} />
+          </Route>
+          <Route
+            path="/switches"
+            element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+          >
+            <Route path="/switches" element={<Switches />} />
           </Route>
           <Route
             path="/registerAdmin"
