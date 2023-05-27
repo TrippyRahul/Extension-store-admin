@@ -185,7 +185,7 @@ const AllStores = () => {
                   Edit
                 </Button>
                 <Button
-                  color="secondary"
+                  color="denger"
                   variant="contained"
                   onClick={() => deleteStoreData(store._id)}
                   style={{ padding: "10px 30px 10px 30px" }}
