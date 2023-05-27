@@ -70,18 +70,16 @@ const Form = ({
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-           
             />
           </div>
           <div className="inputs">
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               id="username"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-             
             />
           </div>
           <div style={{ textAlign: "center" }} className="login-btn">

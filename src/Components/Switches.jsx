@@ -52,7 +52,6 @@ const Switches = () => {
   return (
     <div>
       <button onClick={allSWTurnOff}>Turn Off All Switches</button>
-
       <div>
         <div className="switchesButton">
           <div>
