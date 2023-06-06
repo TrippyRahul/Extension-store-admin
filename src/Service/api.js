@@ -31,7 +31,6 @@ export const addStore = async (data) => {
     alert(error.response.data.message);
   }
 };
-
 // Get all stores
 export const getStores = async () => {
   try {
@@ -40,7 +39,6 @@ export const getStores = async () => {
     console.log(`Error while calling getStore API`, error);
   }
 };
-
 // Get store
 export const getStore = async (id) => {
   try {
@@ -49,7 +47,6 @@ export const getStore = async (id) => {
     console.log(`Error while calling getStore api`, error);
   }
 };
-
 //Edit Store
 export const editStore = async (id, store) => {
   try {
@@ -58,7 +55,6 @@ export const editStore = async (id, store) => {
     console.log(`Error while  calling EditStore `, error);
   }
 };
-
 //Delete store
 export const deleteStore = async (id) => {
   try {
@@ -68,8 +64,6 @@ export const deleteStore = async (id) => {
   }
 };
 
-///////////////////////Switches////////////////////
-
 // get all switches
 export const getAddSwitches = async () => {
   try {
@@ -78,6 +72,7 @@ export const getAddSwitches = async () => {
     console.log(error.message);
   }
 };
+///////////////////////Switches (NPD test)////////////////////
 
 //turn of all switches
 export const turnOffAllSwicthes = async () => {
@@ -87,7 +82,6 @@ export const turnOffAllSwicthes = async () => {
     console.log(error.message);
   }
 };
-
 // Toggle switchOne
 export const TgswitchOne = async () => {
   try {
@@ -118,5 +112,79 @@ export const TgswitchFour = async () => {
     return await axios.put(`${URL}/switchFour`);
   } catch (error) {
     console.log(error);
+  }
+};
+
+/////////////////////// True adblocker Switches////////////////////
+export const offAllSwTrueAdblocker = async () => {
+  try {
+    return await axios.put(`${URL}/offAllSwTrueAdblocker`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwOneTADB = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwOneTADB`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwTwoTADB = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwTwoTADB`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwThreeTADB = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwThreeTADB`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwFourTADB = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwFourTADB`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+///////////////////////OTTWatchParty Switches////////////////////
+export const offAllSwOttParty = async () => {
+  try {
+    return await axios.put(`${URL}/offAllSwOttParty`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwOneOttParty = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwOneOttParty`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwTwoOttParty = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwTwoOttParty`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwThreeOttParty = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwThreeOttParty`);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const toggleSwFourOttParty = async () => {
+  try {
+    return await axios.put(`${URL}/toggleSwFourOttParty`);
+  } catch (error) {
+    console.log(error.message);
   }
 };
