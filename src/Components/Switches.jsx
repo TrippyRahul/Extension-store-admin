@@ -22,7 +22,7 @@ import {
 
 //////////////////////NPDSwitches///////////////////////////
 const Switches = () => {
-  useEffect(() => {
+    useEffect(() => {
     const getSwitches = async () => {
       const response = await getAddSwitches();
       setAllSwitches(response.data);
@@ -83,7 +83,7 @@ const Switches = () => {
 
   return (
 <>
-<div>
+<div style={{padding: "0px 10px 0px 10px"}}>
       <h1>True adblocker switches</h1>
       <div
         style={{
@@ -182,9 +182,6 @@ const Switches = () => {
   </Suspense></>
   );
 };
-
-
-
 ///////////////////////TureAdblockerSw///////////////////////
 
 const TureAdblockerSw = ({ allSwitches }) => {
@@ -240,7 +237,7 @@ console.log(allSwitches,"all")
   };
 
   return (
-    <div>
+    <div style={{padding: "0px 10px 0px 10px"}}>
       <h1>True adblocker switches</h1>
       <div
         style={{
@@ -330,7 +327,7 @@ console.log(allSwitches,"all")
           </div>
         </div>
       </div>
-    </div>
+    </divc>
   );
 };
 ///////////////////////OttWatchParty///////////////////////
@@ -386,7 +383,7 @@ const OttWatchParty = ({ allSwitches }) => {
   };
 
   return (
-    <div>
+<div style={{padding: "0px 10px 0px 10px"}}>
     <h1>Ott WatchParty</h1>
     <div
       style={{
