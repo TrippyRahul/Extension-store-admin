@@ -237,7 +237,8 @@ console.log(allSwitches,"all")
   };
 
   return (
-    <div style={{padding: "0px 10px 0px 10px"}}>
+   <>
+<div style={{padding: "0px 10px 0px 10px"}}>
       <h1>True adblocker switches</h1>
       <div
         style={{
@@ -327,7 +328,8 @@ console.log(allSwitches,"all")
           </div>
         </div>
       </div>
-    </divc>
+    </div>
+   </>
   );
 };
 ///////////////////////OttWatchParty///////////////////////
@@ -383,7 +385,9 @@ const OttWatchParty = ({ allSwitches }) => {
   };
 
   return (
-<div style={{padding: "0px 10px 0px 10px"}}>
+    <>
+    
+    <div style={{padding: "0px 10px 0px 10px"}}>
     <h1>Ott WatchParty</h1>
     <div
       style={{
@@ -474,6 +478,7 @@ const OttWatchParty = ({ allSwitches }) => {
       </div>
     </div>
   </div>
+    </>
   );
 };
 
