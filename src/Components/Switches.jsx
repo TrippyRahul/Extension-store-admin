@@ -18,287 +18,465 @@ import {
   toggleSwThreeOttParty,
   toggleSwFourOttParty,
 } from "../Service/api";
+
+
+//////////////////////NPDSwitches///////////////////////////
 const Switches = () => {
-  const [allSwitches, setAllSwitches] = useState([]);
-  //NPD Swtiches
-  const [switchOne, setSwitchOne] = useState("");
-  const [switchTwo, setSwitchTwo] = useState("");
-  const [switchThree, setSwitchThree] = useState("");
-  const [switchFour, setSwitchFour] = useState("");
-
-  const [switchChanged, setSwitchChanged] = useState(false);
-
   useEffect(() => {
     const getSwitches = async () => {
       const response = await getAddSwitches();
       setAllSwitches(response.data);
-      setSwitchOne(response.data[0].switchOne);
-      setSwitchTwo(response.data[0].switchTwo);
-      setSwitchThree(response.data[0].switchThree);
-      setSwitchFour(response.data[0].switchFour);
+
     };
     getSwitches();
-  }, [switchChanged]);
+  }, []);
+  const [allSwitches, setAllSwitches] = useState([]);
+  const [NpdSw, setTrueAdblockerSw] = useState({
+    sw1: allSwitches[0]?.switchOne,
+    sw2: allSwitches[0]?.switchTwo,
+    sw3: allSwitches[0]?.switchThree,
+    sw4: allSwitches[0]?.switchFour,
+  });
 
-  const allSWTurnOff = async () => {
-    await turnOffAllSwicthes();
-    setSwitchChanged((prevState) => !prevState);
+  useEffect(() => {
+    setTrueAdblockerSw({
+      sw1: allSwitches[0]?.switchOne,
+      sw2: allSwitches[0]?.switchTwo,
+      sw3: allSwitches[0]?.switchThree,
+      sw4: allSwitches[0]?.switchFour,
+    });
+  }, [allSwitches]);
+
+  const toggleSwitch = (switchName) => {
+    setTrueAdblockerSw((prevState) => ({
+      ...prevState,
+      [switchName]: !prevState[switchName],
+    }));
+
+    switch (switchName) {
+      case 'sw1':
+        TgswitchOne();
+        break;
+      case 'sw2':
+        TgswitchTwo();
+        break;
+      case 'sw3':
+        TgswitchThree();
+        break;
+      case 'sw4':
+        TgswitchFour();
+        break;
+      default:
+        break;
+    }
   };
 
-  const toggleSwitchOne = async () => {
-    await TgswitchOne();
-    setSwitchChanged((prevState) => !prevState);
-  };
-  const toggleSwitchTwo = async () => {
-    await TgswitchTwo();
-    setSwitchChanged((prevState) => !prevState);
-  };
-  const toggleSwitchThree = async () => {
-    await TgswitchThree();
-    setSwitchChanged((prevState) => !prevState);
-  };
-  const toggleSwitchFour = async () => {
-    await TgswitchFour();
-    setSwitchChanged((prevState) => !prevState);
+  const toggleAllSwitches = () => {
+    setTrueAdblockerSw({
+      sw1: false,
+      sw2: false,
+      sw3: false,
+      sw4: false,
+    });
+    turnOffAllSwicthes()
   };
 
   return (
-    <>
-      <div>
-        <div
-          style={{
-            padding: "10px 0px 10px 0px",
-            display: "flex",
-            justifyContent: "end",
-          }}
+<>
+<div>
+      <h1>True adblocker switches</h1>
+      <div
+        style={{
+          padding: "10px 0px 10px 0px",
+          display: "flex",
+          justifyContent: "end",
+        }}
+      >
+        <Button
+          onClick={toggleAllSwitches}
+          color="primary"
+          variant="contained"
+          style={{ marginRight: 10, padding: "10px 41px 10px 41px" }}
         >
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={allSWTurnOff}
-            style={{ marginRight: 10, padding: "10px 41px 10px 41px" }}
+          Turn off all
+        </Button>
+      </div>
+      <div>
+        <div className="switchesButton">
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
           >
-            Turn Off All Switches
-          </Button>
-        </div>
-        <div>
-          <div className="switchesButton">
-            <div
-              style={{
-                padding: "10px 0px 10px 0px",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
+            <span>switch One status: {NpdSw?.sw1?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw1')}
             >
-              <span>switch One status :{switchOne.toString()}</span>
-              <Button
-                style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
-                color="secondary"
-                variant="contained"
-                onClick={toggleSwitchOne}
-              >
-                Toggle switch one
-              </Button>
-            </div>
-            <div
-              style={{
-                padding: "10px 0px 10px 0px",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
+              Toggle switch one
+            </Button>
+          </div>
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>switch Two status: {NpdSw?.sw2?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw2')}
             >
-              <span>switch Two status :{switchTwo.toString()}</span>
-              <Button
-                style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
-                color="secondary"
-                variant="contained"
-                onClick={toggleSwitchTwo}
-              >
-                {" "}
-                Toggle switch Two
-              </Button>
-            </div>
-
-            <div
-              style={{
-                padding: "10px 0px 10px 0px",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
+              Toggle switch Two
+            </Button>
+          </div>
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>switch Three status: {NpdSw?.sw3?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw3')}
             >
-              <span>switch Three status :{switchThree.toString()}</span>
-              <Button
-                style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
-                color="secondary"
-                variant="contained"
-                onClick={toggleSwitchThree}
-              >
-                {" "}
-                Toggle switch Three
-              </Button>
-            </div>
-            <div
-              style={{
-                padding: "10px 0px 10px 0px",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
+              Toggle switch Three
+            </Button>
+          </div>
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>switch Four status: {NpdSw?.sw4?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw4')}
             >
-              <span>switch Four status :{switchFour.toString()}</span>
-              <Button
-                style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
-                color="secondary"
-                variant="contained"
-                onClick={toggleSwitchFour}
-              >
-                {" "}
-                Toggle switch Four
-              </Button>
-            </div>
+              Toggle switch Four
+            </Button>
           </div>
         </div>
       </div>
-      <Suspense fallback="Loading ...">
-        <TureAdblockerSw allSwitches={allSwitches} />
-      </Suspense>
-      <Suspense fallback="Loading ...">
-        <OttWatchParty allSwitches={allSwitches} />
-      </Suspense>
-    </>
+    </div>
+    <Suspense fallback="Loading ...">
+    <TureAdblockerSw allSwitches={allSwitches} />
+  </Suspense>
+  <Suspense fallback="Loading ...">
+    <OttWatchParty allSwitches={allSwitches} />
+  </Suspense></>
   );
 };
 
+
+
+///////////////////////TureAdblockerSw///////////////////////
+
 const TureAdblockerSw = ({ allSwitches }) => {
-  const [trueAdblockerSw, setTrueAdblockerSw] = useState({});
-  const [tdbState, setTdbState] = useState(false);
+console.log(allSwitches,"all")
+  const [trueAdblockerSw, setTrueAdblockerSw] = useState({
+    sw1: allSwitches[1]?.switchOne,
+    sw2: allSwitches[1]?.switchTwo,
+    sw3: allSwitches[1]?.switchThree,
+    sw4: allSwitches[1]?.switchFour,
+  });
+
   useEffect(() => {
     setTrueAdblockerSw({
-      ...trueAdblockerSw,
       sw1: allSwitches[1]?.switchOne,
       sw2: allSwitches[1]?.switchTwo,
       sw3: allSwitches[1]?.switchThree,
       sw4: allSwitches[1]?.switchFour,
     });
   }, [allSwitches]);
+
+  const toggleSwitch = (switchName) => {
+    setTrueAdblockerSw((prevState) => ({
+      ...prevState,
+      [switchName]: !prevState[switchName],
+    }));
+
+    switch (switchName) {
+      case 'sw1':
+        toggleSwOneTADB();
+        break;
+      case 'sw2':
+        toggleSwTwoTADB();
+        break;
+      case 'sw3':
+        toggleSwThreeTADB();
+        break;
+      case 'sw4':
+        toggleSwFourTADB();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const toggleAllSwitches = () => {
+    setTrueAdblockerSw({
+      sw1: false,
+      sw2: false,
+      sw3: false,
+      sw4: false,
+    });
+    offAllSwTrueAdblocker()
+  };
 
   return (
     <div>
       <h1>True adblocker switches</h1>
-      <button
-        onClick={() => {
-          offAllSwTrueAdblocker();
+      <div
+        style={{
+          padding: "10px 0px 10px 0px",
+          display: "flex",
+          justifyContent: "end",
         }}
       >
-        Turn off all
-      </button>
-      <div>
-        <p>sw1 : {trueAdblockerSw?.sw1?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwOneTADB();
-          }}
+        <Button
+          onClick={toggleAllSwitches}
+          color="primary"
+          variant="contained"
+          style={{ marginRight: 10, padding: "10px 41px 10px 41px" }}
         >
-          Toggle sw one
-        </button>
+          Turn off all
+        </Button>
       </div>
       <div>
-        <p>sw1 : {trueAdblockerSw?.sw2?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwTwoTADB();
-          }}
-        >
-          Toggle sw Two
-        </button>
-      </div>
-      <div>
-        <p>sw1 : {trueAdblockerSw?.sw3?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwThreeTADB();
-          }}
-        >
-          Toggle sw Three
-        </button>
-      </div>
-      <div>
-        <p>sw1 : {trueAdblockerSw?.sw4?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwFourTADB();
-          }}
-        >
-          Toggle sw four
-        </button>
+        <div className="switchesButton">
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>switch One status: {trueAdblockerSw?.sw1?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw1')}
+            >
+              Toggle switch one
+            </Button>
+          </div>
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>switch Two status: {trueAdblockerSw?.sw2?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw2')}
+            >
+              Toggle switch Two
+            </Button>
+          </div>
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>switch Three status: {trueAdblockerSw?.sw3?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw3')}
+            >
+              Toggle switch Three
+            </Button>
+          </div>
+          <div
+            style={{
+              padding: "10px 0px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>switch Four status: {trueAdblockerSw?.sw4?.toString()}</span>
+            <Button
+              style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+              color="secondary"
+              variant="contained"
+              onClick={() => toggleSwitch('sw4')}
+            >
+              Toggle switch Four
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
+///////////////////////OttWatchParty///////////////////////
 const OttWatchParty = ({ allSwitches }) => {
-  const [trueAdblockerSw, setTrueAdblockerSw] = useState({});
-  const [tdbState, setTdbState] = useState(false);
+  const [trueAdblockerSw, setTrueAdblockerSw] = useState({
+    sw1: allSwitches[2]?.switchOne,
+    sw2: allSwitches[2]?.switchTwo,
+    sw3: allSwitches[2]?.switchThree,
+    sw4: allSwitches[2]?.switchFour,
+  });
+
   useEffect(() => {
     setTrueAdblockerSw({
-      ...trueAdblockerSw,
-      sw1: allSwitches[1]?.switchOne,
-      sw2: allSwitches[1]?.switchTwo,
-      sw3: allSwitches[1]?.switchThree,
-      sw4: allSwitches[1]?.switchFour,
+      sw1: allSwitches[2]?.switchOne,
+      sw2: allSwitches[2]?.switchTwo,
+      sw3: allSwitches[2]?.switchThree,
+      sw4: allSwitches[2]?.switchFour,
     });
   }, [allSwitches]);
 
+  const toggleSwitch = (switchName) => {
+    setTrueAdblockerSw((prevState) => ({
+      ...prevState,
+      [switchName]: !prevState[switchName],
+    }));
+
+    switch (switchName) {
+      case 'sw1':
+        toggleSwOneOttParty();
+        break;
+      case 'sw2':
+        toggleSwTwoOttParty();
+        break;
+      case 'sw3':
+        toggleSwThreeOttParty();
+        break;
+      case 'sw4':
+        toggleSwFourOttParty();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const toggleAllSwitches = () => {
+    setTrueAdblockerSw({
+      sw1: false,
+      sw2: false,
+      sw3: false,
+      sw4: false,
+    });
+    offAllSwOttParty()
+  };
+
   return (
     <div>
-      <h1>OTTWatchParty switches</h1>
-      <button
-        onClick={() => {
-          offAllSwOttParty();
-        }}
+    <h1>Ott WatchParty</h1>
+    <div
+      style={{
+        padding: "10px 0px 10px 0px",
+        display: "flex",
+        justifyContent: "end",
+      }}
+    >
+      <Button
+        onClick={toggleAllSwitches}
+        color="primary"
+        variant="contained"
+        style={{ marginRight: 10, padding: "10px 41px 10px 41px" }}
       >
         Turn off all
-      </button>
-      <div>
-        <p>sw1 : {trueAdblockerSw?.sw1?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwOneOttParty();
+      </Button>
+    </div>
+    <div>
+      <div className="switchesButton">
+        <div
+          style={{
+            padding: "10px 0px 10px 0px",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          Toggle sw one
-        </button>
-      </div>
-      <div>
-        <p>sw1 : {trueAdblockerSw?.sw2?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwTwoOttParty();
+          <span>switch One status: {trueAdblockerSw?.sw1?.toString()}</span>
+          <Button
+            style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+            color="secondary"
+            variant="contained"
+            onClick={() => toggleSwitch('sw1')}
+          >
+            Toggle switch one
+          </Button>
+        </div>
+        <div
+          style={{
+            padding: "10px 0px 10px 0px",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          Toggle sw Two
-        </button>
-      </div>
-      <div>
-        <p>sw1 : {trueAdblockerSw?.sw3?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwThreeOttParty();
+          <span>switch Two status: {trueAdblockerSw?.sw2?.toString()}</span>
+          <Button
+            style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+            color="secondary"
+            variant="contained"
+            onClick={() => toggleSwitch('sw2')}
+          >
+            Toggle switch Two
+          </Button>
+        </div>
+        <div
+          style={{
+            padding: "10px 0px 10px 0px",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          Toggle sw Three
-        </button>
-      </div>
-      <div>
-        <p>sw1 : {trueAdblockerSw?.sw4?.toString()}</p>
-        <button
-          onClick={() => {
-            toggleSwFourOttParty();
+          <span>switch Three status: {trueAdblockerSw?.sw3?.toString()}</span>
+          <Button
+            style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+            color="secondary"
+            variant="contained"
+            onClick={() => toggleSwitch('sw3')}
+          >
+            Toggle switch Three
+          </Button>
+        </div>
+        <div
+          style={{
+            padding: "10px 0px 10px 0px",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          Toggle sw four
-        </button>
+          <span>switch Four status: {trueAdblockerSw?.sw4?.toString()}</span>
+          <Button
+            style={{ marginRight: 10, padding: "10px 10px 10px 10px" }}
+            color="secondary"
+            variant="contained"
+            onClick={() => toggleSwitch('sw4')}
+          >
+            Toggle switch Four
+          </Button>
+        </div>
       </div>
     </div>
+  </div>
   );
 };
 
